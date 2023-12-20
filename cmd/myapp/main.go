@@ -6,7 +6,8 @@ import (
 	"myapp/internal"
 )
 
-const DEFAULT_DISCOUNT = 500
+const DEFAULT_DISCOUNT = 5000
+const DEFAULT_PRICE = 10000
 
 func main() {
 	cust := internal.NewCustomer("Dmitry", 23, 10000, 1000, true)
@@ -21,6 +22,11 @@ func main() {
 		}
 		return result, nil
 	}
-
 	fmt.Printf("%+v\n", cust)
+
+	finalPrice, err := internal.CalcPrice(*cust, DEFAULT_PRICE)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Printf("The final price of a product worth %d is: %d\n", DEFAULT_PRICE, finalPrice)
 }
